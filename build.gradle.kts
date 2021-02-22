@@ -2,7 +2,8 @@
 plugins {
 //    java
 //    `maven-publish`
-    kotlin("multiplatform").version("1.4.10")
+    kotlin("multiplatform") version "1.4.10"
+    id("org.jetbrains.dokka") version "1.4.20"
 }
 
 repositories {
@@ -24,6 +25,15 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
             }
         }
+
+        named("commonTest") {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:1.4.10")
+                implementation("org.spekframework.spek2:spek-dsl-metadata:2.0.9")
+                runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
+            }
+        }
+
         named("jvmMain") {
             dependencies {
                 implementation("io.vertx:vertx-core:4.0.0")
@@ -36,15 +46,13 @@ kotlin {
                 implementation("com.zaxxer:HikariCP:3.4.5")
                 implementation("io.vertx:vertx-lang-kotlin:4.0.0")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10")
-
             }
         }
+
         named("jvmTest") {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
-                implementation("org.jetbrains.kotlin:kotlin-test:1.4.10")
                 implementation("org.spekframework.spek2:spek-dsl-jvm:2.0.9")
-                implementation("org.spekframework.spek2:spek-runner-junit5:2.0.9")
+                runtimeOnly("org.spekframework.spek2:spek-runner-junit5:2.0.9")
             }
         }
     }
