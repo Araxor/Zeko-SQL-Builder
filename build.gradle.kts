@@ -7,8 +7,9 @@ plugins {
 
 repositories {
     mavenLocal()
+    google()
+    jcenter()
     maven(url = "http://mvnrepository.com/artifact/")
-    maven(url = "https://jcenter.bintray.com/")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://repo.maven.apache.org/maven2/")
     maven(url = "https://kotlin.bintray.com/kotlinx/")
