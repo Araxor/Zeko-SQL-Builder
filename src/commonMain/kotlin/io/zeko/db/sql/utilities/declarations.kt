@@ -1,5 +1,7 @@
 package io.zeko.db.sql.utilities
 
+fun Char.isUpperCase(): Boolean =
+    this.toUpperCase() == this
 
 fun String.toSnakeCase(): String {
     var text: String = ""

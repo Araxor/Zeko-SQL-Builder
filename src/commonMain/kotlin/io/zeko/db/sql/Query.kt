@@ -1,6 +1,5 @@
 package io.zeko.db.sql
 
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -41,7 +40,7 @@ open class Query {
     }
 
     private val expression by lazy {
-        EnumMap<CustomPart, List<QueryBlock>>(CustomPart::class.java)
+        mutableMapOf<CustomPart, List<QueryBlock>>()
     }
 
     private var limitOffset: Array<Int>? = null

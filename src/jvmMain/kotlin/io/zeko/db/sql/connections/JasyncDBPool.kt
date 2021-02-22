@@ -1,6 +1,8 @@
 package io.zeko.db.sql.connections
 
-import com.github.jasync.sql.db.*
+import com.github.jasync.sql.db.Configuration
+import com.github.jasync.sql.db.ConnectionPoolConfiguration
+import com.github.jasync.sql.db.ConnectionPoolConfigurationBuilder
 import com.github.jasync.sql.db.mysql.MySQLConnectionBuilder
 import com.github.jasync.sql.db.mysql.pool.MySQLConnectionFactory
 import com.github.jasync.sql.db.pool.ConnectionPool

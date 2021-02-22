@@ -1,22 +1,21 @@
 package io.zeko.db.sql.connections
 
-import io.zeko.model.declarations.toMaps
 import io.vertx.core.json.JsonArray
+import io.vertx.ext.sql.ResultSet
 import io.vertx.ext.sql.SQLConnection
 import io.vertx.ext.sql.UpdateResult
 import io.vertx.kotlin.ext.sql.queryAwait
 import io.vertx.kotlin.ext.sql.queryWithParamsAwait
 import io.vertx.kotlin.ext.sql.updateWithParamsAwait
-import kotlinx.coroutines.delay
-import java.lang.Exception
-import java.util.LinkedHashMap
-import io.vertx.ext.sql.ResultSet
 import io.zeko.db.sql.exceptions.DuplicateKeyException
 import io.zeko.db.sql.exceptions.throwDuplicate
+import io.zeko.model.declarations.toMaps
+import kotlinx.coroutines.delay
 import java.sql.Date
 import java.sql.Time
 import java.sql.Timestamp
 import java.time.*
+import java.util.*
 
 open class VertxDBSession : DBSession {
     protected var conn: DBConn

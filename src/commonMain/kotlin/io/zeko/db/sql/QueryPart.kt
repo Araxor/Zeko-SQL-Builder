@@ -1,12 +1,9 @@
 package io.zeko.db.sql
 
-import java.util.*
-import kotlin.collections.HashMap
-
 data class QueryInfo(val sql: String, val columns: List<String>, val sqlFields: String, val parts: QueryParts)
 
 class QueryParts {
-    private val rgxFindField = "([^\\\"\\ ][a-zA-Z0-9\\_]+[^\\\"\\ ])\\.([^\\\"\\s][a-zA-Z0-9\\_\\-\\=\\`\\~\\:\\.\\,\\|\\*\\^\\#\\@\\\$]+[\\^\"\\s])".toPattern()
+    private val rgxFindField = "([^\\\"\\ ][a-zA-Z0-9\\_]+[^\\\"\\ ])\\.([^\\\"\\s][a-zA-Z0-9\\_\\-\\=\\`\\~\\:\\.\\,\\|\\*\\^\\#\\@\\\$]+[\\^\"\\s])".toRegex()
     private val rgxReplace = "\\\"\$1\\\".\$2"
     var linebreak: String = " "
         get() = field
@@ -23,7 +20,7 @@ class QueryParts {
     var havings: List<Condition>
     var order: List<Sort>
     var limit: Array<Int>?
-    var custom: EnumMap<CustomPart, List<QueryBlock>>
+    var custom: Map<CustomPart, List<QueryBlock>>
 
     constructor(
             query:Query,
@@ -35,7 +32,7 @@ class QueryParts {
             limit: Array<Int>?,
             groupBys: List<String>,
             havingCondition: List<Condition>,
-            customExpression: EnumMap<CustomPart, List<QueryBlock>>
+            customExpression: Map<CustomPart, List<QueryBlock>>
     ) {
         this.fields = fields
         this.query = query
@@ -50,8 +47,7 @@ class QueryParts {
     }
 
     private fun escapeTableName(statement: String): String {
-        val matcher = rgxFindField.matcher(statement)
-        return matcher.replaceAll(rgxReplace)
+        return rgxFindField.replace(statement, rgxReplace)
     }
 
     override fun toString(): String {

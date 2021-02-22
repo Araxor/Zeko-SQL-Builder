@@ -1,7 +1,5 @@
 package io.zeko.db.sql.connections
 
-import java.util.LinkedHashMap
-
 interface DBSession {
     fun pool(): DBPool
     fun connection(): DBConn
