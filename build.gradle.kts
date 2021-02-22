@@ -1,7 +1,7 @@
 
 plugins {
 //    java
-//    `maven-publish`
+    id("maven-publish")
     kotlin("multiplatform") version "1.4.10"
     id("org.jetbrains.dokka") version "1.4.20"
 }
@@ -68,19 +68,3 @@ kotlin {
 group = "io.zeko"
 version = "1.2.3-SNAPSHOT"
 description = "io.zeko:zeko-sql-builder"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
-
-//java {
-//    withSourcesJar()
-//    withJavadocJar()
-//}
-//
-//publishing {
-//    publications.create<MavenPublication>("maven") {
-//        from(components["java"])
-//    }
-//}
-//
-//tasks.withType<JavaCompile>() {
-//    options.encoding = "UTF-8"
-//}
